@@ -27,8 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
-const port = process.env.EXPRESS_PORT || 4000;
-const host = process.env.EXPRESS_HOST || "local host"
+const port = process.env.PORT || 4000;
 
 app.use(session({
     secret: process.env.SECRET,
