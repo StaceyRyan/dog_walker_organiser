@@ -18,8 +18,7 @@ class DogButtons extends React.Component {
             showDogList: []
         };
         this.handleShowAllDogsButton = this.handleShowAllDogsButton.bind(this);
-        this.handleSpecificDogButton = this.handleSpecificDogButton.bind(this);
-
+        this.handleSingleDogButton = this.handleSingleDogButton.bind(this);
     }
 
     handleShowAllDogsButton = async () => {
@@ -33,14 +32,8 @@ class DogButtons extends React.Component {
         })
     }
 
-    handleSpecificDogButton = async () => {
-        console.log('specific dog button')
-        const fetchOneDog = await fetch(`http://localhost:4000/dog/showOne/:${this._id}`)
-        const oneDog = await fetchOneDog.json()
-        console.log(oneDog)
-        this.setState({
-            showDogList: oneDog
-        })
+    handleSingleDogButton = async (dogID) => {
+        this.props.history.push(`/DogProfile/${dogID}`)
     }
 
     render() {
@@ -54,7 +47,7 @@ class DogButtons extends React.Component {
            )}
            const allDogList = this.state.showDogList.map(doggo => {
             return <li key={doggo._id}>
-                    <button onClick={this.handleSpecificDogButton}>
+                    <button onClick={() => this.handleSingleDogButton(doggo._id)}>
                         {doggo.name}
                     </button>
                 </li>

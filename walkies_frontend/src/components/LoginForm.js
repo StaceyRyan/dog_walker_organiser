@@ -1,5 +1,5 @@
 import React from 'react';
-import DogButtons from './DogButtons';
+// import DogButtons from './dogComponent/DogButtons';
 
 import { Redirect } from 'react-router-dom';
 
@@ -56,7 +56,7 @@ handleSubmitButton = async () => {
             {
                 return response;
             } 
-            Promise.reject();
+            Promise.reject({});
         })
         .then(response => response.json())
         .then(result => {
@@ -92,11 +92,7 @@ render() {
             </label>
             <button onClick={this.handleSubmitButton} 
                     disabled={this.state.submitDisabled} 
-                    >Submit</button>
-            {/* todo make this a route redirect */}
-            {/* {<DogButtons />} */}
-            
-            
+                    >Submit</button>    
         </>
     )
 }

@@ -5,7 +5,8 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import DogButtons from './components/DogButtons';
+import DogButtons from './components/dogComponents/DogButtons';
+import IndividualDog from './components/dogComponents/IndividualDog';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={WalkiesHome}/>
         <Route exact path="/DogButtons" component={DogButtons}/>
+        <Route exact path="/DogProfile/:id" component={IndividualDog} />
       </Switch>
     </div>
   );

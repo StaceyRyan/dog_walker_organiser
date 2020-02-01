@@ -1,5 +1,5 @@
 import React from 'react';
-import DogButtons from './DogButtons';
+import DogButtons from './dogComponents/DogButtons';
 
 class RegistrationForm extends React.Component {
     constructor(props) {
@@ -59,7 +59,7 @@ class RegistrationForm extends React.Component {
             redirect: 'follow'
         };
 
-        const newHuman = fetch("http://localhost:4000/user/newHuman", requestOptions)
+        const newHuman = fetch("/user/newHuman", requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
