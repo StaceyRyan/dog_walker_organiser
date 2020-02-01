@@ -1,14 +1,15 @@
 {
-    "name": "walkieslauncher", 
-    "version": "1.0.0",
-    "description": "",
-    "main": "./walkies_backend/src/server.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "npm install ./walkies_backend && node ./walkies_backend/src/server.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
+  "name": "walkieslauncher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./walkies_backend/src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm install ./walkies_backend && node ./walkies_backend/src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "walkes_backend": "file:walkies_backend"
   }
 }
