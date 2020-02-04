@@ -1,6 +1,6 @@
 import React from 'react';
 // import Dog from './Dog';
-import Bootstrap from 'react-bootstrap';
+// import Bootstrap from 'react-bootstrap';
 
 const dogButtonStates = {
     showLogout: 1,
@@ -18,7 +18,6 @@ class DogButtons extends React.Component {
             showDogList: []
         };
         this.handleShowAllDogsButton = this.handleShowAllDogsButton.bind(this);
-        this.handleSingleDogButton = this.handleSingleDogButton.bind(this);
     }
 
     handleShowAllDogsButton = async () => {
@@ -32,10 +31,6 @@ class DogButtons extends React.Component {
         })
     }
 
-    handleSingleDogButton = async (dogID) => {
-        this.props.history.push(`/DogProfile/${dogID}`)
-    }
-
     render() {
         if (this.state.showDogList.length === 0) {
             return (
@@ -43,11 +38,14 @@ class DogButtons extends React.Component {
                 <button onClick={this.handleShowAllDogsButton}>
                     Go To Your Dogs
                 </button>
+                <button onClick={() => this.props.history.push('/newDog')}>
+                    Create New Dog
+                </button>
             </>
            )}
            const allDogList = this.state.showDogList.map(doggo => {
             return <li key={doggo._id}>
-                    <button onClick={() => this.handleSingleDogButton(doggo._id)}>
+                    <button onClick={() => this.props.history.push(`/dogProfile/${doggo._id}`)}>
                         {doggo.name}
                     </button>
                 </li>

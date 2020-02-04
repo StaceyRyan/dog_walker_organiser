@@ -1,32 +1,24 @@
 import React from 'react';
 
 class IndividualDog extends React.Component {
-    
+
     constructor() {
         super();
         this.state = {
-            showDog: {
-                name: '',
-                age: '',
-                breed: '',
-                address: '',
-                health_issues: '',
-                notes: '',
-                avatar: ''
-            }
+            showDog: null
         };
     }
 
-    componentDidMount()
-    {
-        console.log(this.props.match.params.id)
-        this.displayDogProfile(this.props.match.params.id)
+    componentDidMount() {
+        const dogRetrieval = this.props.match.params.id
+        console.log(dogRetrieval)
+        this.fetchDogProfile(dogRetrieval)
     }
 
-    displayDogProfile = async (dogID) => {
+    fetchDogProfile = async (dogID) => {
         console.log('specific dog button id: ' + dogID)
         const fetchOneDog = await fetch(`/dog/showOne/${dogID}`,
-            {credentials: "same-origin"})
+            { credentials: "same-origin" })
         const oneDog = await fetchOneDog.json()
         console.log(oneDog)
         this.setState({
@@ -34,10 +26,25 @@ class IndividualDog extends React.Component {
         })
     }
 
+    showDogProfile() {
+        return (
+            <>
+                <h3>{this.state.showDog.name}</h3>
+                <p>
+                    {this.state.showDog.breed}
+                    {this.state.address}
+                    {this.state.health_issues}
+                    {this.state.notes}
+                    {this.state.showDog.avatar}
+                </p>
+            </>
+        )
+    }
+
     render() {
         return (
             <>
-            <p>One Dog Here</p>
+                {this.state.showDog && this.showDogProfile()}
             </>
         )
     }

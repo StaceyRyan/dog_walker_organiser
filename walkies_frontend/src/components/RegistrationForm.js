@@ -1,5 +1,10 @@
 import React from 'react';
 import DogButtons from './dogComponents/DogButtons';
+import { Redirect } from 'react-router-dom';
+import ReactPasswordStrength from 'react-password-strength';
+
+
+
 
 class RegistrationForm extends React.Component {
     constructor(props) {
@@ -8,13 +13,16 @@ class RegistrationForm extends React.Component {
         this.state = {
             username: '',
             password: '',
+            validPassword: false,
             preferredName: '',
             email: '',
             phoneNumber: '',
-            submitDisabled: true
+            submitDisabled: true,
+            registrationMessage: ''
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
+        this.handlePasswordStrength = this.handlePasswordStrength.bind(this);
     }
 
     handleKeyStrike(event) {
@@ -22,8 +30,12 @@ class RegistrationForm extends React.Component {
         const value = event.target.value;
         this.setState({ [keystrike]: value });
 
+        this.submitButtonChecker();
+    }
+
+    submitButtonChecker() {
         if (this.state.username &&
-            this.state.password &&
+            this.state.validPassword &&
             this.state.preferredName &&
             this.state.email &&
             this.state.phoneNumber) {
@@ -60,16 +72,38 @@ class RegistrationForm extends React.Component {
         };
 
         const newHuman = fetch("/user/newHuman", requestOptions)
-            .then(response => response.text())
+            .then(response => {
+                if (+response.status === 201) {
+                    this.props.history.push("/login")
+                    return response;
+                }
+            })
+            .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
 
         console.log('New user created ' + JSON.stringify(newHuman));
     };
 
+    handlePasswordStrength(appState, result) {
+        console.log(appState)
+        if (appState < 3) {
+            this.setState({
+                validPassword: false
+            })
+        }
+        else {
+            this.setState({
+                validPassword: true
+            })
+        }
+        this.submitButtonChecker();
+    }
+
     render() {
         return (
             <>
+                <h3>Create New Account</h3>
                 <div className={"form-group"}>
                     <label>
                         Username:
@@ -88,13 +122,19 @@ class RegistrationForm extends React.Component {
                             onChange={this.handleKeyStrike} />
                     </label>
                 </div>
-                <label>
-                    Password:
-                        <input type="text" name="password"
-                        value={this.state.password}
-                        className={"form-control"}
-                        onChange={this.handleKeyStrike} />
-                </label>
+                <div className={"form-group"}>
+                    <label>
+                        Password:
+                    <ReactPasswordStrength
+                            name="password"
+                            className="form-control"
+                            minLength={5}
+                            minScore={2}
+                            scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                            changeCallback={this.handlePasswordStrength}
+                        />
+                    </label>
+                </div>
                 <div className={"form-group"}>
                     <label>
                         Email:
@@ -116,18 +156,18 @@ class RegistrationForm extends React.Component {
                     <div className={"form-group"}>
                         <label>Dog Parent:
                             <input type="radio"
-                            checked={true} 
-                            name="userRole"
-                            value="owner"
-                            onChange={this.handleKeyStrike} />
+                                checked={true}
+                                name="userRole"
+                                value="owner"
+                                onChange={this.handleKeyStrike} />
                         </label>
                     </div>
                     <div className={"form-group"}>
                         <label>Dog Walker:
                             <input type="radio"
-                            name="userRole"
-                            value="walker"
-                            onChange={this.handleKeyStrike} />
+                                name="userRole"
+                                value="walker"
+                                onChange={this.handleKeyStrike} />
                         </label>
                     </div>
                 </div>
