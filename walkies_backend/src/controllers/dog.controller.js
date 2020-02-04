@@ -6,7 +6,7 @@ class DogControl {
         let status = 0;
         let msg = "";
 
-        console.log(body._id);
+        console.log(body);
 
         try {
             await DogModel.create(body);
@@ -14,7 +14,7 @@ class DogControl {
             msg = "New dog added";
         }
         catch (e) {
-            await this.updateById(body._id, body);
+            //await this.updateById(body._id, body);
             status = 204;
             msg = "Record updated";
         }

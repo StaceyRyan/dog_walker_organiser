@@ -15,7 +15,6 @@ DogRouter.use((req, res, next) => {
 DogRouter.post('/new', async (req, res) => {
     const newDog = await Dog.newEntry(req.body);
     res.status(newDog.status).send(newDog.msg);
-    res.json({ status: "New dog added." });
 })
 
 DogRouter.get('/show_all', async (req, res) => {

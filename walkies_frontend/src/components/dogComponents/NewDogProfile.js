@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-
 class NewDogProfile extends React.Component {
     constructor() {
         super();
@@ -12,9 +11,11 @@ class NewDogProfile extends React.Component {
             health_issues: '',
             notes: '',
             avatar: '',
-            submitDisabled: true
+            submitDisabled: true,
+            goToDogButtons: false
         }
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
+        this.handleCreateNewDog = this.handleCreateNewDog.bind(this);
     }
 
     handleKeyStrike(event) {
@@ -53,15 +54,23 @@ class NewDogProfile extends React.Component {
 
         let newDogOptions = {
             method: 'POST',
-            // headers: myHeaders,
+            headers: myHeaders,
             body: raw,
             redirect: 'follow'
         };
+        
         const createNewDog = await fetch("/dog/new", newDogOptions)
-            .then(response => response.json())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-        console.log('New dog created ' + JSON.stringify(createNewDog));
+            .then(response => {
+                if (+response.status === 200){
+                    this.props.history.push("/dogButtons")
+                    return response;
+                }
+            })
+            .then(result => {
+                console.log(result);
+            }).catch(error => console.log('error', error));
+       
+            console.log('New dog created ' + JSON.stringify(createNewDog));
 
     };
 

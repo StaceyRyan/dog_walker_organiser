@@ -23,7 +23,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {console.log("Mongoose is online")});
 
-app.use(express.static('./walkies_backend/frontend'));
+//app.use(express.static('./walkies_backend/frontend'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
@@ -40,7 +40,7 @@ app.use(session({
 }));
 
 //routes
-app.use('/dog', authenticateChecker, DogRouter);
+app.use('/dog', DogRouter);
 app.use('/user', UserRouter);
 app.use('/owner', authenticateChecker, OwnerRouter)
 app.use('/auth', AuthenticateRouter);

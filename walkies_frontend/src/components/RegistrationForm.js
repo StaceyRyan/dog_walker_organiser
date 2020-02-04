@@ -1,11 +1,5 @@
 import React from 'react';
-import DogButtons from './dogComponents/DogButtons';
-import { Redirect } from 'react-router-dom';
 import ReactPasswordStrength from 'react-password-strength';
-
-
-
-
 class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
@@ -85,7 +79,7 @@ class RegistrationForm extends React.Component {
         console.log('New user created ' + JSON.stringify(newHuman));
     };
 
-    handlePasswordStrength(appState, result) {
+    handlePasswordStrength(appState) {
         console.log(appState)
         if (appState < 3) {
             this.setState({

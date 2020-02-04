@@ -1,8 +1,5 @@
 import React from 'react';
-// import DogButtons from './dogComponent/DogButtons';
-
 import { Redirect } from 'react-router-dom';
-
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -63,8 +60,7 @@ class LoginForm extends React.Component {
                 this.setState({
                     goToDogButtons: true
                 })
-            })
-            .catch(error => console.log('error', error));
+            }).catch(error => console.log('error', error));
 
         console.log('API login ' + JSON.stringify(loginUser));
     };
