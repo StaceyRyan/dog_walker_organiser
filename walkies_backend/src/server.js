@@ -31,8 +31,8 @@ app.use(session({
 //routes
 app.use('/user', UserRouter);
 app.use('/dog', DogRouter);
-app.use('/owner', AuthenticateChecker, OwnerRouter)
+app.use('/owner', /*AuthenticateChecker,*/ OwnerRouter)
 app.use('/auth', AuthenticateRouter);
-app.use('/upload', AvatarUpload);
+// app.use('/upload', AvatarUpload);
 
 app.listen(port, () => {console.log(`Listening on port ${port}`)});

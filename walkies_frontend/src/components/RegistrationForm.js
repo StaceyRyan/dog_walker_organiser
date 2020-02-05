@@ -35,7 +35,7 @@ class RegistrationForm extends React.Component {
 
     submitButtonChecker() {
 
-        if (this.state.validPassword === true &&
+        if (this.state.validPassword &&
             this.state.username &&
             this.state.preferredName &&
             this.state.email &&
@@ -87,19 +87,19 @@ class RegistrationForm extends React.Component {
     };
 
     handlePasswordStrength(appState, result) {
-        console.log(appState)
-        if (appState < 3) {
+        console.log(appState.score)
+        if (appState.score < 2) {
             this.setState({
                 validPassword: false
             })
         }
         else {
             this.setState({
+                password: appState.password,
                 validPassword: true
             })
         }
         this.submitButtonChecker();
-            this.setState({goHome: true})
     }
 
     handleHomeButton(){
