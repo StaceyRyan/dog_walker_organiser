@@ -2,28 +2,17 @@ const express = require('express');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const app = express();
-// require ('./mongo');
+require ('./mongo');
 require('dotenv').config()
 const UserRouter = require('./routes/User.route');
 const OwnerRouter = require('./routes/Owner.route');
 const DogRouter = require('./routes/Dog.route');
-const {authenticateChecker} = require('./controllers/auth.controller');
+const {AuthenticateChecker} = require('./controllers/auth.controller');
 const AuthenticateRouter = require('./routes/Authenticate.route');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const dbName = process.env.MONGO_DB || 'walkies';
-const mongoURI = process.env.MONGODB_URI || `mongodb://localhost/${dbName}`;
-
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function() {console.log("Mongoose is online")});
 
-//app.use(express.static('./walkies_backend/frontend'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
@@ -40,9 +29,10 @@ app.use(session({
 }));
 
 //routes
-app.use('/dog', DogRouter);
 app.use('/user', UserRouter);
-app.use('/owner', authenticateChecker, OwnerRouter)
+app.use('/dog', DogRouter);
+app.use('/owner', AuthenticateChecker, OwnerRouter)
 app.use('/auth', AuthenticateRouter);
+app.use('/upload', AvatarUpload);
 
 app.listen(port, () => {console.log(`Listening on port ${port}`)});

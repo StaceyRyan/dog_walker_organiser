@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 const buttonStates = {
     showLogin: 1,
@@ -22,8 +23,12 @@ class WalkiesHome extends React.Component {
             <>
                 {this.state.buttonState === buttonStates.showBasicButtons && 
                     <>
-                        <button onClick={() => this.props.history.push('/login')}>Login</button>
-                        <button onClick={() => this.props.history.push('/register')}>Register</button>
+                        <Button onClick={() => this.props.history.push('/login')}
+                                color="primary" variant="outlined" 
+                                size="small">Login</Button>
+                        <Button onClick={() => this.props.history.push('/register')}
+                                color="primary" variant="outlined" 
+                                size="small">Register</Button>
                     </>}
             </>
         )}

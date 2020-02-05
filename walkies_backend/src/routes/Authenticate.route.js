@@ -24,7 +24,6 @@ AuthenticateRouter.post('/login', async (req, res) => {
 
 AuthenticateRouter.get('/logout', (req, res) => {
     req.session.destroy();
-
     res.json({ status: "logged out" });
 })
 

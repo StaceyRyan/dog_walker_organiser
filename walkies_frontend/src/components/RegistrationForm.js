@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactPasswordStrength from 'react-password-strength';
+import { Redirect } from 'react-router-dom';
+
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
@@ -12,11 +16,13 @@ class RegistrationForm extends React.Component {
             email: '',
             phoneNumber: '',
             submitDisabled: true,
-            registrationMessage: ''
+            registrationMessage: '',
+            goHome: false
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
         this.handlePasswordStrength = this.handlePasswordStrength.bind(this);
+        this.handleHomeButton = this.handleHomeButton.bind(this);
     }
 
     handleKeyStrike(event) {
@@ -28,8 +34,9 @@ class RegistrationForm extends React.Component {
     }
 
     submitButtonChecker() {
-        if (this.state.username &&
-            this.state.validPassword &&
+
+        if (this.state.validPassword === true &&
+            this.state.username &&
             this.state.preferredName &&
             this.state.email &&
             this.state.phoneNumber) {
@@ -79,7 +86,7 @@ class RegistrationForm extends React.Component {
         console.log('New user created ' + JSON.stringify(newHuman));
     };
 
-    handlePasswordStrength(appState) {
+    handlePasswordStrength(appState, result) {
         console.log(appState)
         if (appState < 3) {
             this.setState({
@@ -92,61 +99,61 @@ class RegistrationForm extends React.Component {
             })
         }
         this.submitButtonChecker();
+            this.setState({goHome: true})
+    }
+
+    handleHomeButton(){
+        this.setState({
+            goHome: true
+        })
     }
 
     render() {
         return (
-            <>
+        <>
                 <h3>Create New Account</h3>
                 <div className={"form-group"}>
-                    <label>
-                        Username:
-                        <input type="text" name="username"
-                            value={this.state.username}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Username" 
+                        type="text" name="username"
+                        variant="outlined"
+                        size="small"
+                        value={this.state.username}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Preferred Name:
-                        <input type="text" name="preferredName"
-                            value={this.state.preferredName}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Preferred Name"
+                        type="text" name="preferredName"
+                        variant="outlined"
+                        size="small"
+                        value={this.state.preferredName}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Password:
-                    <ReactPasswordStrength
-                            name="password"
-                            className="form-control"
-                            minLength={5}
-                            minScore={2}
-                            scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
-                            changeCallback={this.handlePasswordStrength}
-                        />
-                    </label>
+                    <TextField
+                        label="Email Address"
+                        type="text" name="email"
+                        variant="outlined"
+                        size="small"
+                        value={this.state.email}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Email:
-                        <input type="text" name="email"
-                            value={this.state.email}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
-                    <div className={"form-group"}>
-                        <label>
-                            Phone Number:
-                        <input type="number" name="phoneNumber"
-                                value={this.state.phoneNumber}
-                                className={"form-control"}
-                                onChange={this.handleKeyStrike} />
-                        </label>
+                    <TextField 
+                        label="Phone Number"
+                        type="number" name="phoneNumber"
+                        variant="outlined"
+                        size="small"
+                        value={this.state.phoneNumber}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                     </div>
-                    <p>Please indicate if you are a dog owner or a dog walker.</p>
+                <br></br>
+                <p>Please indicate if you are a dog parent or a dog walker.</p>
                     <div className={"form-group"}>
                         <label>Dog Parent:
                             <input type="radio"
@@ -164,9 +171,29 @@ class RegistrationForm extends React.Component {
                                 onChange={this.handleKeyStrike} />
                         </label>
                     </div>
+                    <br></br>
+                    <p>Create a strong password with letters, numbers and symbols in the box below:</p>
+                    <div className={"form-group"}>
+                    <ReactPasswordStrength
+                        name="password"
+                        className="form-control"
+                        minLength={5}
+                        minScore={2}
+                        scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                        changeCallback={this.handlePasswordStrength}
+                        />
                 </div>
-                <button onClick={this.handleSubmitButton} disabled={this.state.submitDisabled}>Submit</button>
-
+                <Button onClick={this.handleSubmitButton}
+                        disabled={this.state.submitDisabled}
+                        color="primary" variant="outlined"
+                        size="small">
+                        Submit</Button>
+                
+                {this.state.goHome && <Redirect to="/"/>}
+                <Button onClick={this.handleHomeButton}
+                        color="primary" variant="outlined"
+                        size="small">
+                        Home</Button>
             </>
         )
     }

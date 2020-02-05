@@ -1,4 +1,8 @@
 import React from 'react';
+import Logout from '../LogoutButton';
+
+// import Button from '@material-ui/core/Button';
+// import TextField from '@material-ui/core/TextField';
 
 class IndividualDog extends React.Component {
 
@@ -45,6 +49,9 @@ class IndividualDog extends React.Component {
         return (
             <>
                 {this.state.showDog && this.showDogProfile()}
+                
+                <Logout />
+                
             </>
         )
     }

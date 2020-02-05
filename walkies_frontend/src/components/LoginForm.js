@@ -1,6 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -9,10 +12,13 @@ class LoginForm extends React.Component {
             username: '',
             password: '',
             submitDisabled: true,
-            goToDogButtons: false
+            goToDogButtons: false,
+            goHome: false
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
+        this.handleHomeButton = this.handleHomeButton.bind(this);
+
     };
     handleKeyStrike(event) {
         const keystrike = event.target.name;
@@ -65,32 +71,54 @@ class LoginForm extends React.Component {
         console.log('API login ' + JSON.stringify(loginUser));
     };
 
+    handleHomeButton(){
+        this.setState({
+            goHome: true
+        })
+    }
+
     render() {
         return (
             <>
                 <h3>Login</h3>
                 {this.state.goToDogButtons && <Redirect to="/dogButtons" />}
                 <div className={"form-group"}>
-                    <label>
-                        Username:
-                        <input type="text" name="username"
-                            value={this.state.username}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        // id="outlined-helperText"
+                        label="Username"
+                        type="text" name="username"
+                        // helperText="Username"
+                        variant="outlined"
+                        size="small"
+                        value={this.state.username}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
+                <br></br>
                 <div className={"form-group"}>
-                    <label>
-                        Password:
-                    <input type="password" name="password"
-                            value={this.state.password}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        // id="outlined-helperText"
+                        label="Password"
+                        type="password" name="password"
+                        // helperText="Password"
+                        variant="outlined"
+                        size="small"
+                        value={this.state.password}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
-                <button onClick={this.handleSubmitButton}
-                    disabled={this.state.submitDisabled}
-                >Submit</button>
+                <br></br>
+                <Button onClick={this.handleSubmitButton}
+                        disabled={this.state.submitDisabled}
+                        color="primary" variant="outlined" 
+                        size="small">
+                        Submit</Button>
+
+                {this.state.goHome && <Redirect to="/"/>}
+                <Button onClick={this.handleHomeButton}
+                        color="primary" variant="outlined"
+                        size="small">
+                        Home</Button>
             </>
         )
     }
