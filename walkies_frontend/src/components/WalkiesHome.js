@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import WaggyTail from './animationComponents/WaggyTail';
 
 const buttonStates = {
     showLogin: 1,
@@ -30,6 +31,7 @@ class WalkiesHome extends React.Component {
                                 color="primary" variant="outlined" 
                                 size="small">Register</Button>
                     </>}
+                <WaggyTail />
             </>
         )}
 }
