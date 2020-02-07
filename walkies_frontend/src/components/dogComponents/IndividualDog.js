@@ -1,5 +1,8 @@
 import React from 'react';
 import Logout from '../LogoutButton';
+import { Button } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
+
 
 // import Button from '@material-ui/core/Button';
 // import TextField from '@material-ui/core/TextField';
@@ -9,8 +12,10 @@ class IndividualDog extends React.Component {
     constructor() {
         super();
         this.state = {
-            showDog: null
+            showDog: null,
+            goToAvatarUploader: false
         };
+        this.handleUploadButton = this.handleUploadButton.bind(this);
     }
 
     componentDidMount() {
@@ -45,11 +50,24 @@ class IndividualDog extends React.Component {
         )
     }
 
+    handleUploadButton(){
+        console.log("upoload button clicked")
+        this.setState({
+            goToAvatarUploader: true
+        })
+    }
+
     render() {
         return (
             <>
                 {this.state.showDog && this.showDogProfile()}
-                
+                {this.state.goToAvatarUploader && <Redirect to="/uploadAvatar"/>}
+
+                <Button onClick={this.handleUploadButton}
+                        color="primary"
+                        variant="outlined"
+                        size="small">
+                        Upload Dog Portrait</Button>
                 <Logout />
                 
             </>

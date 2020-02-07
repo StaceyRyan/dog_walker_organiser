@@ -10,6 +10,7 @@ import IndividualDog from './components/dogComponents/IndividualDog';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import NewDogProfile from './components/dogComponents/NewDogProfile';
+import UploadFiles from './components/dogComponents/UploadFiles';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/dogButtons" component={DogButtons}/>
         <Route exact path="/newDog" component={NewDogProfile}/>
         <Route exact path="/dogProfile/:id" component={IndividualDog} />
+        <Route exact path="/uploadAvatar" component={UploadFiles} />
       </Switch>
     </div>
   );

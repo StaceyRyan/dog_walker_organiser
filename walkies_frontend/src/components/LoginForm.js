@@ -94,7 +94,7 @@ class LoginForm extends React.Component {
                         className={"form-control"}
                         onChange={this.handleKeyStrike} />
                 </div>
-                <br></br>
+                <br />
                 <div className={"form-group"}>
                     <TextField
                         // id="outlined-helperText"

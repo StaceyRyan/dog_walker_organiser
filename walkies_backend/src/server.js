@@ -12,6 +12,9 @@ const AuthenticateRouter = require('./routes/Authenticate.route');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const db = mongoose.connection;
+const AvatarUpload = require('./routes/AvatarUploader');
+const avatarFolder = './avatarFolder';
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -33,6 +36,7 @@ app.use('/user', UserRouter);
 app.use('/dog', DogRouter);
 app.use('/owner', /*AuthenticateChecker,*/ OwnerRouter)
 app.use('/auth', AuthenticateRouter);
-// app.use('/upload', AvatarUpload);
+app.use('/upload', AvatarUpload);
 
+app.use(express.static(avatarFolder));
 app.listen(port, () => {console.log(`Listening on port ${port}`)});
