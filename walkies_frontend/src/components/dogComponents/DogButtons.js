@@ -1,5 +1,6 @@
 import React from 'react';
 import Logout from '../LogoutButton';
+import HomeButton from '../HomeButton';
 import Button from '@material-ui/core/Button';
 
 // import Dog from './Dog';
@@ -47,16 +48,17 @@ class DogButtons extends React.Component {
                 </Button>
               
                 <Logout />
+                <HomeButton />
                 
 
             </>
            )}
            const allDogList = this.state.showDogList.map(doggo => {
             return <li key={doggo._id}>
-                    <button onClick={() => this.props.history.push(`/dogProfile/${doggo._id}`)}
+                    <Button onClick={() => this.props.history.push(`/dogProfile/${doggo._id}`)}
                             color="primary" variant="outlined" size="small">
                         {doggo.name}
-                    </button>
+                    </Button>
                 </li>
         })
         return (
@@ -67,7 +69,7 @@ class DogButtons extends React.Component {
             </ul>
             
             <Logout />
-
+            <HomeButton />
             </>
         )
     }

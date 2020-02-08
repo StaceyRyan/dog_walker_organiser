@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import HomeButton from './HomeButton';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -17,7 +18,6 @@ class LoginForm extends React.Component {
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
-        this.handleHomeButton = this.handleHomeButton.bind(this);
 
     };
     handleKeyStrike(event) {
@@ -71,12 +71,6 @@ class LoginForm extends React.Component {
         console.log('API login ' + JSON.stringify(loginUser));
     };
 
-    handleHomeButton(){
-        this.setState({
-            goHome: true
-        })
-    }
-
     render() {
         return (
             <>
@@ -114,11 +108,7 @@ class LoginForm extends React.Component {
                         size="small">
                         Submit</Button>
 
-                {this.state.goHome && <Redirect to="/"/>}
-                <Button onClick={this.handleHomeButton}
-                        color="primary" variant="outlined"
-                        size="small">
-                        Home</Button>
+                <HomeButton />
             </>
         )
     }

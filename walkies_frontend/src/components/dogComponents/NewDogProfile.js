@@ -1,4 +1,6 @@
 import React from 'react';
+import HomeButton from '../HomeButton';
+
 import { Redirect } from 'react-router-dom';
 
 class NewDogProfile extends React.Component {
@@ -136,6 +138,7 @@ class NewDogProfile extends React.Component {
                 <button onClick={this.handleCreateNewDog} 
                         disabled={this.state.submitDisabled}>
                     Submit</button>
+                <HomeButton />
             </>
         )
     }

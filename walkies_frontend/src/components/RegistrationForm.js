@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactPasswordStrength from 'react-password-strength';
-import { Redirect } from 'react-router-dom';
+import HomeButton from './HomeButton';
+import RoleButtons from './RoleButtons';
 
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,6 @@ class RegistrationForm extends React.Component {
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
         this.handlePasswordStrength = this.handlePasswordStrength.bind(this);
-        this.handleHomeButton = this.handleHomeButton.bind(this);
     }
 
     handleKeyStrike(event) {
@@ -102,12 +102,6 @@ class RegistrationForm extends React.Component {
         this.submitButtonChecker();
     }
 
-    handleHomeButton(){
-        this.setState({
-            goHome: true
-        })
-    }
-
     render() {
         return (
         <>
@@ -154,23 +148,7 @@ class RegistrationForm extends React.Component {
                     </div>
                 <br></br>
                 <p>Please indicate if you are a dog parent or a dog walker.</p>
-                    <div className={"form-group"}>
-                        <label>Dog Parent:
-                            <input type="radio"
-                                checked={true}
-                                name="userRole"
-                                value="owner"
-                                onChange={this.handleKeyStrike} />
-                        </label>
-                    </div>
-                    <div className={"form-group"}>
-                        <label>Dog Walker:
-                            <input type="radio"
-                                name="userRole"
-                                value="walker"
-                                onChange={this.handleKeyStrike} />
-                        </label>
-                    </div>
+                    <RoleButtons />
                     <br></br>
                     <p>Create a strong password with letters, numbers and symbols in the box below:</p>
                     <div className={"form-group"}>
@@ -189,11 +167,7 @@ class RegistrationForm extends React.Component {
                         size="small">
                         Submit</Button>
                 
-                {this.state.goHome && <Redirect to="/"/>}
-                <Button onClick={this.handleHomeButton}
-                        color="primary" variant="outlined"
-                        size="small">
-                        Home</Button>
+                <HomeButton />
             </>
         )
     }

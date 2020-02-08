@@ -7,7 +7,7 @@ const userSchema = new Schema ({
     preferredName: String,
     email: String,
     phoneNumber: Number,
-    profile: {role: String},
+    role: Array,
     dogList: String
 });
 

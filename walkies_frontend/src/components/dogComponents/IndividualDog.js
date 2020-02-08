@@ -1,5 +1,8 @@
 import React from 'react';
 import Logout from '../LogoutButton';
+import HomeButton from '../HomeButton';
+
+
 import { Button } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 
@@ -68,7 +71,9 @@ class IndividualDog extends React.Component {
                         variant="outlined"
                         size="small">
                         Upload Dog Portrait</Button>
+                <br />
                 <Logout />
+                <HomeButton />
                 
             </>
         )
