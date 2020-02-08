@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactPasswordStrength from 'react-password-strength';
 import HomeButton from './HomeButton';
-import RoleButtons from './RoleButtons';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
 class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +17,7 @@ class RegistrationForm extends React.Component {
             preferredName: '',
             email: '',
             phoneNumber: '',
+            userRole: [],
             submitDisabled: true,
             registrationMessage: '',
             goHome: false
@@ -23,6 +25,7 @@ class RegistrationForm extends React.Component {
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
         this.handlePasswordStrength = this.handlePasswordStrength.bind(this);
+        this.handleRoleSelectorButtons = this.handleRoleSelectorButtons.bind(this);
     }
 
     handleKeyStrike(event) {
@@ -62,7 +65,8 @@ class RegistrationForm extends React.Component {
             "password": this.state.password,
             "preferredName": this.state.preferredName,
             "email": this.state.email,
-            "phoneNumber": this.state.phoneNumber
+            "phoneNumber": this.state.phoneNumber,
+            "userRole": this.state.userRole
         });
 
         let requestOptions = {
@@ -102,13 +106,20 @@ class RegistrationForm extends React.Component {
         this.submitButtonChecker();
     }
 
+    handleRoleSelectorButtons = (userType) => {
+        console.log(`${userType} button clicked`);
+        this.setState({
+            userRole: userType
+        });
+    };
+  
     render() {
         return (
-        <>
+            <>
                 <h3>Create New Account</h3>
                 <div className={"form-group"}>
                     <TextField
-                        label="Username" 
+                        label="Username"
                         type="text" name="username"
                         variant="outlined"
                         size="small"
@@ -137,7 +148,7 @@ class RegistrationForm extends React.Component {
                         onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <TextField 
+                    <TextField
                         label="Phone Number"
                         type="number" name="phoneNumber"
                         variant="outlined"
@@ -145,13 +156,10 @@ class RegistrationForm extends React.Component {
                         value={this.state.phoneNumber}
                         className={"form-control"}
                         onChange={this.handleKeyStrike} />
-                    </div>
-                <br></br>
-                <p>Please indicate if you are a dog parent or a dog walker.</p>
-                    <RoleButtons />
-                    <br></br>
-                    <p>Create a strong password with letters, numbers and symbols in the box below:</p>
-                    <div className={"form-group"}>
+                </div>
+
+                <p>Create a strong password with letters, numbers and symbols in the box below:</p>
+                <div className={"form-group"}>
                     <ReactPasswordStrength
                         name="password"
                         className="form-control"
@@ -159,14 +167,31 @@ class RegistrationForm extends React.Component {
                         minScore={2}
                         scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
                         changeCallback={this.handlePasswordStrength}
-                        />
+                    />
                 </div>
+
+                <br></br>
+                <p>Are you a dog parent or a dog walker?</p>
+                <div>
+                    <ButtonGroup color="primary" aria-label="outlined primary button group">
+                        <Button 
+                            variant={this.state.userRole === "parent" ? "contained" : "text"}
+                            onClick={() => this.handleRoleSelectorButtons("parent")}>
+                                Dog Parent</Button>
+                        <Button 
+                            variant={this.state.userRole === "walker" ? "contained" : "text"}
+                            onClick={() => this.handleRoleSelectorButtons("walker")}>
+                                Dog Walker</Button>
+                    </ButtonGroup>
+                </div>
+                <br></br>
+
                 <Button onClick={this.handleSubmitButton}
-                        disabled={this.state.submitDisabled}
-                        color="primary" variant="outlined"
-                        size="small">
-                        Submit</Button>
-                
+                    disabled={this.state.submitDisabled}
+                    color="primary" variant="outlined"
+                    size="small">
+                    Submit</Button>
+
                 <HomeButton />
             </>
         )
