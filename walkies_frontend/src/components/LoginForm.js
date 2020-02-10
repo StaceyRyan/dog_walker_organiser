@@ -18,6 +18,7 @@ class LoginForm extends React.Component {
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
+        this.handleHomeButton = this.handleHomeButton.bind(this);
 
     };
     handleKeyStrike(event) {
@@ -64,18 +65,23 @@ class LoginForm extends React.Component {
             .then(result => {
                 console.log(result);
                 this.setState({
-                    goToDogButtons: true
+                    goToDogButtons: true   
                 })
             }).catch(error => console.log('error', error));
 
         console.log('API login ' + JSON.stringify(loginUser));
     };
 
+    handleHomeButton(){
+        this.setState({
+            goHome: true})
+    }
+
     render() {
         return (
             <>
                 <h3>Login</h3>
-                {this.state.goToDogButtons && <Redirect to="/dogButtons" />}
+                {this.state.goToDogButtons && <Redirect to="/ownerDogButtons" />}
                 <div className={"form-group"}>
                     <TextField
                         // id="outlined-helperText"
@@ -108,7 +114,11 @@ class LoginForm extends React.Component {
                         size="small">
                         Submit</Button>
 
-                <HomeButton />
+                {this.state.goHome && <Redirect to="/" />}
+                <Button onClick={this.handleHomeButton}
+                        color="primary" variant="outlined" 
+                        size="small">
+                        Home</Button>
             </>
         )
     }

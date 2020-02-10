@@ -14,8 +14,9 @@ class HomeButton extends React.Component {
     }
 
     handleHomeButton(){
-        // if {
-        // };
+        // if(
+            //Todo change between home button that goes to "/" and button that goes to "/dogButtons"
+        // )
         this.setState({
             goHome: true
         })
@@ -24,7 +25,7 @@ class HomeButton extends React.Component {
     render() {
         return (
             <>
-                {this.state.goHome && <Redirect to="/" />}
+                {this.state.goHome && <Redirect to="/ownerDogButtons" />}
                 <Button onClick={this.handleHomeButton}
                     color="primary" variant="outlined"
                     size="small">

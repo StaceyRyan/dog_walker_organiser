@@ -1,14 +1,22 @@
 import React from 'react';
-import DogButtons from './DogButtons';
+import OwnerDogButtons from './ownerDogButtons';
 
 class Owner extends React.Component {
+
+    // constructor(){
+    //     super();
+    //     this.state={
+
+    //     }
+    // }
     
 
 render() {
     return (
         <>
+        <OwnerDogButtons />
         <button>
-            Show All Dogs
+            Select Booking
         </button>
         </>
     )

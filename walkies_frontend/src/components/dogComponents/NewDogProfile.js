@@ -2,6 +2,8 @@ import React from 'react';
 import HomeButton from '../HomeButton';
 
 import { Redirect } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class NewDogProfile extends React.Component {
     constructor() {
@@ -64,7 +66,7 @@ class NewDogProfile extends React.Component {
         const createNewDog = await fetch("/dog/new", newDogOptions)
             .then(response => {
                 if (+response.status === 200){
-                    this.props.history.push("/dogButtons")
+                    this.props.history.push("/ownderDogButtons")
                     return response;
                 }
             })
@@ -80,64 +82,67 @@ class NewDogProfile extends React.Component {
         return (
             <>
                 <h3>New Dog Profile</h3>
-                {this.state.goToDogButtons && <Redirect to="/dogButtons" />}
+                {this.state.goToDogButtons && <Redirect to="/ownerDogButtons" />}
                 <div className={"form-group"}>
-                    <label>
-                        Dog Name:
-                        <input type="text" name="name"
-                            value={this.state.name}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Dog Name"
+                        type="text" name="name"
+                        variant="outlined" size="small"
+                        value={this.state.name}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Breed:
-                        <input type="text" name="breed"
-                            value={this.state.breed}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Breed"
+                        type="text" name="breed"
+                        variant="outlined" size="small"
+                        value={this.state.breed}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Address:
-                        <input type="text" name="address"
-                            value={this.state.address}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Address"
+                        type="text" name="address"
+                        variant="outlined" size="small"
+                        value={this.state.address}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Health Issues:
-                        <input type="text" name="health_issues"
-                            value={this.state.health_issues}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Health Issues"
+                        type="text" name="address"
+                        variant="outlined" size="small"
+                        type="text" name="health_issues"
+                        value={this.state.health_issues}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Notes:
-                        <input type="text" name="notes"
-                            value={this.state.notes}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Notes"
+                        type="text" name="notes"
+                        variant="outlined" size="small"
+                        value={this.state.notes}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
                 <div className={"form-group"}>
-                    <label>
-                        Avatar:
-                        <input type="text" name="avatar"
-                            value={this.state.avatar}
-                            className={"form-control"}
-                            onChange={this.handleKeyStrike} />
-                    </label>
+                    <TextField
+                        label="Avatar"
+                        type="text" name="avatar"
+                        variant="outlined" size="small"
+                        value={this.state.avatar}
+                        className={"form-control"}
+                        onChange={this.handleKeyStrike} />
                 </div>
-                <button onClick={this.handleCreateNewDog} 
-                        disabled={this.state.submitDisabled}>
-                    Submit</button>
+                <Button onClick={this.handleCreateNewDog} 
+                        disabled={this.state.submitDisabled}
+                        color="primary" variant="outlined"
+                        size="small">
+                    Submit</Button>
                 <HomeButton />
             </>
         )
