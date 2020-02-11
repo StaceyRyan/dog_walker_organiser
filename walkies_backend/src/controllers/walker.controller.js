@@ -1,4 +1,4 @@
-const WalkerModel = require('../models/Dog.model');
+const WalkiesModel = require('../models/Walkies.model');
 
 class WalkControl {
 
@@ -15,8 +15,9 @@ class WalkControl {
         }
         catch (e) {
             //await this.updateById(body._id, body);
-            status = 204;
-            msg = "Walk updated";
+            console.log(e)
+            status = 400;
+            msg = "Failed to add walk";
         }
         return { status: status, msg: msg };
     }
