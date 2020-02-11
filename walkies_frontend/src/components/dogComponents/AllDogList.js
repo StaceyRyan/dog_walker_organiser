@@ -26,8 +26,7 @@ class AllDogList extends React.Component {
 
     retrieveAllDogList = async () => {
         console.log('retrieve all dogs')
-        const fetchDogs = await fetch('/dog/show_all',
-            { credentials: "same-origin" })
+        const fetchDogs = await fetch('/dog/show_all', { credentials: "same-origin" })
         const dogList = await fetchDogs.json()
         console.log(dogList)
         this.setState({

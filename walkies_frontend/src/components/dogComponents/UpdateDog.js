@@ -1,11 +1,13 @@
 import React from 'react';
 import HomeButton from '../HomeButton';
+import IndividualDog from './IndividualDog';
 
 import { Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { id } from 'date-fns/locale';
 
-class NewDogProfile extends React.Component {
+class UpdateDog extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -15,11 +17,16 @@ class NewDogProfile extends React.Component {
             health_issues: '',
             notes: '',
             avatar: '',
-            submitDisabled: true,
-            goToDogButtons: false
         }
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
-        this.handleCreateNewDog = this.handleCreateNewDog.bind(this);
+        this.handleUpdateDog = this.handleUpdateDog.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+    }
+
+    componentDidMount() {
+        return(
+            <IndividualDog />
+        )  
     }
 
     handleKeyStrike(event) {
@@ -27,61 +34,33 @@ class NewDogProfile extends React.Component {
         const value = event.target.value;
         this.setState({ [keystrike]: value });
 
-        console.log("Status: " + this.state.name && this.state.address );
-
-        if (this.state.name && this.state.address) {
-            this.setState({
-                submitDisabled: false
-            })
-        }
-        else {
-            this.setState({
-                submitDisabled: true
-            })
-        }
+        console.log("Status: " + this.state.name);
     }
 
-    handleCreateNewDog = async () => {
-        console.log('handle new dog button')
-
-        let myHeaders = new Headers();
+    handleUpdateDog = async () => {
+        console.log('handle update dog button')
+        const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        let raw = JSON.stringify({
-            "name": this.state.name,
-            "breed": this.state.breed,
-            "address": this.state.address,
-            "health_issues": this.state.health_issues,
-            "notes": this.state.notes,
-            "avatar": this.state.avatar
-        })
-
-        let newDogOptions = {
-            method: 'POST',
+        const raw = new JSON.stringify({});
+        
+        const requestOptions = {
+            method: 'PUT',
             headers: myHeaders,
             body: raw,
             redirect: 'follow'
         };
-        
-        const createNewDog = await fetch("/dog/new", newDogOptions)
-            .then(response => {
-                if (+response.status === 200){
-                    this.props.history.push("/ownderDogButtons")
-                    return response;
-                }
-            })
-            .then(result => {
-                console.log(result);
-            }).catch(error => console.log('error', error));
-       
-            console.log('New dog created ' + JSON.stringify(createNewDog));
 
-    };
+        fetch(`/dog/update/${id}`, requestOptions)
+            .then(response => response.JSON())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
 
     render() {
         return (
             <>
-                <h3>New Dog Profile</h3>
+                <h3>Update {this.name} </h3>
                 {this.state.goToDogButtons && <Redirect to="/ownerDogButtons" />}
                 <div className={"form-group"}>
                     <TextField
@@ -137,10 +116,9 @@ class NewDogProfile extends React.Component {
                         className={"form-control"}
                         onChange={this.handleKeyStrike} />
                 </div>
-                <Button onClick={this.handleCreateNewDog} 
-                        disabled={this.state.submitDisabled}
-                        color="primary" variant="outlined"
-                        size="small">
+                <Button onClick={this.handleUpdateDog}
+                    color="primary" variant="outlined"
+                    size="small">
                     Submit</Button>
                 <HomeButton />
             </>
@@ -149,4 +127,4 @@ class NewDogProfile extends React.Component {
 
 }
 
-export default NewDogProfile;
+export default UpdateDog;

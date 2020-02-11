@@ -3,6 +3,17 @@ const AuthenticateRouter = express.Router();
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/User.model');
 
+AuthenticateRouter.get('/checkUser', async (req, res) => {
+    if(req.session.user)
+    {
+        res.send();
+    }
+    else
+    {
+        res.status(404).send();
+    }
+});
+
 AuthenticateRouter.post('/login', async (req, res) => {
     const { username, password } = req.body;
     user = await UserModel.findOne({ username });

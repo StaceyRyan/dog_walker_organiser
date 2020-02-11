@@ -2,13 +2,8 @@ import React from 'react';
 import Logout from '../LogoutButton';
 import HomeButton from '../HomeButton';
 
-
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
-
-
-// import Button from '@material-ui/core/Button';
-// import TextField from '@material-ui/core/TextField';
 
 class IndividualDog extends React.Component {
 
@@ -16,9 +11,11 @@ class IndividualDog extends React.Component {
         super();
         this.state = {
             showDog: null,
-            goToAvatarUploader: false
+            goToAvatarUploader: false,
+            goToUpdate: false
         };
         this.handleUploadButton = this.handleUploadButton.bind(this);
+        this.handleGoToUpdate = this.handleGoToUpdate.bind(this);
     }
 
     componentDidMount() {
@@ -60,17 +57,30 @@ class IndividualDog extends React.Component {
         })
     }
 
+    handleGoToUpdate(){
+        console.log("update button clicked")
+        this.setState({
+            goToUpdate: true
+        })
+    }
+
     render() {
         return (
             <>
                 {this.state.showDog && this.showDogProfile()}
                 {this.state.goToAvatarUploader && <Redirect to="/uploadAvatar"/>}
+                {this.state.goToUpdate && <Redirect to="/updateDog" />}
 
                 <Button onClick={this.handleUploadButton}
                         color="primary"
                         variant="outlined"
                         size="small">
                         Upload Dog Portrait</Button>
+                <Button onClick={this.handleGoToUpdate}
+                        color="primary"
+                        variant="outlined"
+                        size="small">
+                        Update Dog Profile</Button>
                 <br />
                 <Logout />
                 <HomeButton />

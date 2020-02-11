@@ -5,6 +5,13 @@ import HomeButton from './HomeButton';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+// const legitUser = {
+//     isAuthenticated: false,
+//     authenticate(user) {
+//         this.isAuthenticated = true
+//         setTimeout(user, 100)
+//     },
+// }
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -14,13 +21,16 @@ class LoginForm extends React.Component {
             password: '',
             submitDisabled: true,
             goToDogButtons: false,
-            goHome: false
+            goHome: false,
+            // redirectToReferrer: false
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
         this.handleHomeButton = this.handleHomeButton.bind(this);
 
     };
+
+
     handleKeyStrike(event) {
         const keystrike = event.target.name;
         const value = event.target.value;
@@ -64,6 +74,7 @@ class LoginForm extends React.Component {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+                this.props.afterLogin();
                 this.setState({
                     goToDogButtons: true   
                 })
@@ -78,6 +89,7 @@ class LoginForm extends React.Component {
     }
 
     render() {
+
         return (
             <>
                 <h3>Login</h3>

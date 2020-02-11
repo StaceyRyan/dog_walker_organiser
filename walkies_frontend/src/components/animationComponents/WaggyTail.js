@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimelineLite, CSSPlugin } from 'gsap/all';
+import { TimelineLite, CSSPlugin, TweenLite, TweenMax, SteppedEase } from 'gsap/all';
 import Button from '@material-ui/core/Button';
 
 class WaggyTail extends React.Component {
@@ -7,17 +7,20 @@ class WaggyTail extends React.Component {
         super(props);
         this.dogContainer = null;
         this.dogTween = null;
+        this.dogFlicker = null;
     }
 
     componentDidMount() {
         //Need the TweenLite to provide access to built-in GSAP stuff like reverse, restart etc
+        //TweenLite SteppedEase config number = how many steps to take
+        //TweenLite x value is finish position on X axis
+        // Integer in front of {} is the number of seconds the tween takes
         this.dogTween = new TimelineLite({ paused: true })
-            .to(this.dogContainer, 2, { x: 100 });
-            // .to(this.dogContainer, 1, {
-            //     // rotation: 360,
-            //     transformOrigin: "center"
-            // });
+            .to(this.dogContainer, 3, { x: 200 })
+            .to(this.dogContainer, 1, { repeat:-1, backgroundPosition: "-2400px", ease:SteppedEase.config(10) })
+            .to(this.dogFlicker, 1, { repeat:-1, x:-2250, ease:SteppedEase.config(10) });
     }
+
 
     render() {
         return (
@@ -54,6 +57,13 @@ class WaggyTail extends React.Component {
                         alt=""
                         className="img-fluid dog"
                         ref={ img => this.dogContainer = img }
+                        height="100"
+                        width="100"/>
+                    <img
+                        src="/images/legs_up.jpg"
+                        alt=""
+                        className="img-fluid dog"
+                        ref={ img => this.dogFlicker = img }
                         height="100"
                         width="100"/>
                 </div>;

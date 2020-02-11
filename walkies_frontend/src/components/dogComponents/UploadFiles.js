@@ -21,10 +21,9 @@ class UploadAvatar extends React.Component {
         console.log(e);
 
         const formData = new FormData();
-        formData.append('myFile', this.state.file);
-
-        formData.append('name', this.state.name);
-        formData.append('fileDescription', this.state.fileDescription);
+            formData.append('myFile', this.state.file);
+            formData.append('name', this.state.name);
+            formData.append('fileDescription', this.state.fileDescription);
 
         const response = await fetch('/upload', {
             method: 'POST',
