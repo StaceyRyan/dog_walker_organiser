@@ -17,4 +17,10 @@ WalkerRouter.post('/newWalk', async (req, res) => {
     res.status(newWalk.status).send(newWalk.msg);
 })
 
+WalkerRouter.delete('/delete/:_id', async (req, res) => {
+    console.log(`req.params._id: ${req.params._id}`);
+    const deleteWalk = await Walk.deleteById(req.params._id);
+    res.send(deleteWalk);
+})
+
 module.exports = WalkerRouter;

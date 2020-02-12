@@ -15,8 +15,8 @@ class DogControl {
         }
         catch (e) {
             //await this.updateById(body._id, body);
-            status = 204;
-            msg = "Record updated";
+            status = 400;
+            msg = "Failed to add dog";
         }
         return { status: status, msg: msg };
     }

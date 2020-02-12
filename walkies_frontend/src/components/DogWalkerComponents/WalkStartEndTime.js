@@ -23,7 +23,7 @@ function DogWalkerTimeSetter() {
         <KeyboardDatePicker
           margin="normal"
           id="date-picker-dialog"
-          label="Next Available Date"
+          label="Date"
           format="MM/dd/yyyy"
           value={selectedDate}
           onChange={handleDateChange}
@@ -35,7 +35,7 @@ function DogWalkerTimeSetter() {
         <KeyboardTimePicker
           margin="normal"
           id="time-picker"
-          label="Walk Start Time"
+          label="Time"
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{

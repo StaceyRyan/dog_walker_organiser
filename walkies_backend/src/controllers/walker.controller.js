@@ -21,6 +21,14 @@ class WalkControl {
         }
         return { status: status, msg: msg };
     }
+
+    async deleteById(walkId) {
+        const deleteWalk = await WalkiesModel.deleteOne({ _id: walkId });
+        if (deleteWalk.deletedCount > 0) {
+            return `Walk ${WalkiesModel.name} deleted`;
+        }
+        return `${WalkiesModel.name} unable to be deleted`;
+    }
 }
 
 module.exports = WalkControl

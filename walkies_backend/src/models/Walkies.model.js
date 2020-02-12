@@ -6,15 +6,16 @@ const walkiesSchema = new Schema ({
     startDateTime: String,
     endDateTime: String,
     status: String,
-    // dogParticipants: [{
-    //     dogId: Number,
-    //     bookingStatus: Boolean,
-    //     invoiceId: Number,
-    //     cost: Number,
-    //     poops: Number,
-    //     pickUp: String,
-    //     notes: String
-    // }],
+    numberOfDogs: Number,
+    dogParticipants: [{
+        dogId: Number,
+        bookingStatus: Boolean,
+        invoiceId: Number,
+        cost: Number,
+        poops: Number,
+        pickUp: String,
+        notes: String
+    }],
 });
 
 const WalkiesModel = mongoose.model('Walker', walkiesSchema);
