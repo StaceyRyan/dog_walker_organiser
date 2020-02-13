@@ -11,8 +11,10 @@ const DogRouter = require('./routes/Dog.route');
 const WalkerRouter = require('./routes/Walker.route');
 const {AuthenticateChecker} = require('./controllers/auth.controller');
 const AuthenticateRouter = require('./routes/Authenticate.route');
+
 const AvatarUpload = require('./routes/AvatarUploader');
 const avatarFolder = './avatarFolder';
+const fs = require('fs');
 
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -33,6 +35,14 @@ app.use(session({
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: db })
 }));
+
+//check for folder to hold avatars, if no folder then create one
+if (!fs.existsSync(avatarFolder)){
+    fs.mkdirSync(avatarFolder);
+}
+
+app.use(express.static('frontend'));
+app.use(express.static(avatarFolder));
 
 //routes
 app.use('/user', UserRouter);

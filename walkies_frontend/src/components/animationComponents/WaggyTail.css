@@ -1,5 +1,6 @@
 .dogDiv {
     background: url("/images/legs_down-small.jpg");
+    background-repeat: no-repeat;
     height: 100px;
     width: 100px;
 }

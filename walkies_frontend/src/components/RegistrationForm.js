@@ -57,10 +57,10 @@ class RegistrationForm extends React.Component {
     handleSubmitButton = async () => {
         console.log('handle registration form submit button')
 
-        let myHeaders = new Headers();
+        const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        let raw = JSON.stringify({
+        const raw = JSON.stringify({
             "username": this.state.username,
             "password": this.state.password,
             "preferredName": this.state.preferredName,
@@ -69,7 +69,7 @@ class RegistrationForm extends React.Component {
             "userRole": this.state.userRole
         });
 
-        let requestOptions = {
+        const requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: raw,

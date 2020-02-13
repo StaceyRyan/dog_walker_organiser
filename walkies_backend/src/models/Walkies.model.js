@@ -3,13 +3,11 @@ const Schema = mongoose.Schema;
 
 const walkiesSchema = new Schema ({
     walkerName: String,
-    startDateTime: String,
-    endDateTime: String,
-    status: String,
+    startDateTime: Date,
+    endDateTime: Date,
     numberOfDogs: Number,
     dogParticipants: [{
         dogId: Number,
-        bookingStatus: Boolean,
         invoiceId: Number,
         cost: Number,
         poops: Number,

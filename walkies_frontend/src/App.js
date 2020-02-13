@@ -12,9 +12,9 @@ import RegistrationForm from './components/RegistrationForm';
 import NewDogProfile from './components/dogComponents/NewDogProfile';
 import UpdateDog from './components/dogComponents/UpdateDog';
 import AllDogList from './components/dogComponents/AllDogList';
-import UploadFiles from './components/dogComponents/UploadFiles';
 import DogWalkerAppointmentCreator from './components/DogWalkerComponents/DogWalkerAppointmentCreator';
 import Walker from './components/Walker';
+import UploadAvatar from './components/dogComponents/UploadAvatar';
 
 function App() {
 
@@ -51,7 +51,7 @@ function App() {
       <Route exact path="/newDog" component={NewDogProfile} />
       <Route exact path="/allDogs" component={AllDogList} />
       <Route exact path="/dogProfile/:id" component={IndividualDog} />
-      <Route exact path="/uploadAvatar" component={UploadFiles} />
+      <Route exact path="/uploadAvatar" component={UploadAvatar} />
       <Route exact path="/walkerButtons" component={Walker} />
       <Route exact path="/newWalk" component={DogWalkerAppointmentCreator} />
       <Route exact path="/updateDog" component={UpdateDog} />

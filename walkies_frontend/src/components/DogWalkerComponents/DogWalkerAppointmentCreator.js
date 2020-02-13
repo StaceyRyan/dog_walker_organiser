@@ -1,5 +1,6 @@
 import React from 'react';
-import WalkStartEndTime from './WalkStartEndTime';
+import WalkStartTimeSetter from './WalkStartTimeSetter';
+import WalkEndTimeSetter from './WalkEndTimeSetter'
 
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -28,6 +29,13 @@ class DogWalkerAppointmentCreator extends React.Component {
         }
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
     }
+    handleStartDate = (startDate) => {
+        this.setState({startDateTime: startDate});
+    }
+    handleEndDate = (endDate) => {
+        this.setState({endDateTime: endDate});
+    }
+
     handleKeyStrike(event) {
         const keystrike = event.target.name;
         const value = event.target.value;
@@ -35,16 +43,16 @@ class DogWalkerAppointmentCreator extends React.Component {
 
         console.log("Status: " + this.state.name && this.state.address);
 
-        if (this.state.startDateTime) {
-            this.setState({
-                submitDisabled: false
-            })
-        }
-        else {
-            this.setState({
-                submitDisabled: true
-            })
-        }
+        // if (this.state.startDateTime) {
+        //     this.setState({
+        //         submitDisabled: false
+        //     })
+        // }
+        // else {
+        //     this.setState({
+        //         submitDisabled: true
+        //     })
+        // }
     }
 
     handleCreateNewWalk = async () => {
@@ -67,10 +75,12 @@ class DogWalkerAppointmentCreator extends React.Component {
             redirect: 'follow'
         };
 
-        fetch("/walker/newWalk", requestOptions)
-            .then(response => response.JSON())
+        const newWalk = fetch("/walker/newWalk", requestOptions)
+            .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
+
+            console.log('new walk created ' + JSON.stringify(newWalk));
     }
 
 
@@ -89,20 +99,22 @@ class DogWalkerAppointmentCreator extends React.Component {
                 </div>
                 <div className={"form-group"}>
                     <p>Walk Start Time</p>
-                    <WalkStartEndTime
+                    <WalkStartTimeSetter
                         label="Start Time"
                         value={this.state.startDateTime}
                         className={"form-control"}
-                        onChange={this.handleKeyStrike} />
+                        onChange={this.handleStartDate} />      
                 </div>
+                
                 <div className={"form-group"}>
                     <p>Walk End Time</p>
-                    <WalkStartEndTime
+                    <WalkEndTimeSetter
                         label="End Time"
                         value={this.state.endDateTime}
                         className={"form-control"}
-                        onChange={this.handleKeyStrike} />
+                        onChange={this.handleEndDate} />      
                 </div>
+                <br />
                 <div className={"form-group"}>
                     <TextField
                         label="Dog Quantity"

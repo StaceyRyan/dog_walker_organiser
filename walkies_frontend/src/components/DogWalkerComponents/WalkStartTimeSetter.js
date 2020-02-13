@@ -9,12 +9,13 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-function DogWalkerTimeSetter() {
+function WalkStartTimeSetter(props) {
   // The first commit of Material-UI
   const [selectedDate, setSelectedDate] = React.useState(new Date('2020-02-01T21:11:54'));
 
-  const handleDateChange = date => {
-    setSelectedDate(date);
+  const handleDateChange = startDate => {
+    setSelectedDate(startDate);
+    props.onChange(startDate);
   };
 
   return (
@@ -22,8 +23,8 @@ function DogWalkerTimeSetter() {
       <Grid container justify="space-around">
         <KeyboardDatePicker
           margin="normal"
-          id="date-picker-dialog"
-          label="Date"
+          id="start-date-picker-dialog"
+          label="Start Date"
           format="MM/dd/yyyy"
           value={selectedDate}
           onChange={handleDateChange}
@@ -34,8 +35,8 @@ function DogWalkerTimeSetter() {
         <br />
         <KeyboardTimePicker
           margin="normal"
-          id="time-picker"
-          label="Time"
+          id="start-time-picker"
+          label="Start Time"
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{
@@ -47,4 +48,4 @@ function DogWalkerTimeSetter() {
   );
 }
 
-export default DogWalkerTimeSetter;
+export default WalkStartTimeSetter;

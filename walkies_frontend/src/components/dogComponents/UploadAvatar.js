@@ -15,7 +15,7 @@ class UploadAvatar extends React.Component {
         }
     }
 
-    handleSubmit = async (e) => {
+    handleUploadButton = async (e) => {
         e.preventDefault();
         console.log("submit image button clicked");
         console.log(e);
@@ -25,7 +25,7 @@ class UploadAvatar extends React.Component {
             formData.append('name', this.state.name);
             formData.append('fileDescription', this.state.fileDescription);
 
-        const response = await fetch('/upload', {
+        const response = await fetch('/uploadAvatar', {
             method: 'POST',
             body: formData
         }).catch(e => console.log(e));
@@ -36,17 +36,16 @@ class UploadAvatar extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     };
 
-    handleFileChange = (event) => {
+    handleFileChange = event => {
         this.setState({
             file: event.target.files[0]
-        })
+        });
     };
 
     render() {
         return (
-            <>
-                <form onSubmit={this.handleSubmit}>
-                <TextField
+            <>                
+            <TextField
                     type="file"
                     name="File" variant="outlined"
                     size="small" 
@@ -62,9 +61,9 @@ class UploadAvatar extends React.Component {
             <hr></hr>
                     <Button 
                         color="primary" variant="outlined"
-                        size="small">
-                        Submit</Button>
-                </form>
+                        size="small"
+                        onClick={this.handleUploadButton} >
+                        Submit </Button>
 
             <HomeButton />
             </>
