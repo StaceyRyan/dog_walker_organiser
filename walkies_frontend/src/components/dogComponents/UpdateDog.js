@@ -11,7 +11,7 @@ class UpdateDog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.currentProfile.id,
+            id: props.currentProfile.dogID,
             name: props.currentProfile.name,
             breed: props.currentProfile.breed,
             address: props.currentProfile.address,
@@ -58,7 +58,7 @@ class UpdateDog extends React.Component {
             redirect: 'follow'
         };
 
-        fetch(`/dog/update/${this.state.dogID}`, requestOptions)
+        fetch(`/dog/update/${this.props.dogID}`, requestOptions)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
