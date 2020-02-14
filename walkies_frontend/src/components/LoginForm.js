@@ -14,6 +14,7 @@ class LoginForm extends React.Component {
             password: '',
             submitDisabled: true,
             goToDogButtons: false,
+            goToWalkerButtons: false,
             goHome: false,
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
@@ -65,11 +66,18 @@ class LoginForm extends React.Component {
             })
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                console.log("This is the bit you were looking for  " + JSON.stringify(result));
                 this.props.afterLogin();
-                this.setState({
-                    goToDogButtons: true   
-                })
+                if(result.profile.user.userRole.includes('Owner')) {
+                    this.setState({
+                        goToDogButtons: true   
+                    })
+                } else {
+                    this.setState({
+                      goToWalkerButtons: true  
+                    })
+                }
+                
             }).catch(error => console.log('error', error));
 
         console.log('API login ' + JSON.stringify(loginUser));
@@ -86,6 +94,7 @@ class LoginForm extends React.Component {
             <>
                 <h3>Login</h3>
                 {this.state.goToDogButtons && <Redirect to="/ownerDogButtons" />}
+                {this.state.goToWalkerButtons && <Redirect to="/walkerDashboard" />}
                 <div className={"form-group"}>
                     <TextField
                         // id="outlined-helperText"

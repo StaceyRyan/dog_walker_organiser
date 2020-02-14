@@ -71,6 +71,7 @@ class IndividualDog extends React.Component {
                 {this.state.showDog && this.showDogProfile()}
                 {this.state.goToAvatarUploader && <Redirect to="/uploadAvatar"/>}
                 {this.state.loadUpdateDog && <UpdateDog currentProfile={this.state.showDog} />}
+                <br />
 
                 <Button onClick={this.handleUploadButton}
                         color="primary"

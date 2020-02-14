@@ -1,5 +1,4 @@
 import React from 'react';
-import HomeButton from '../HomeButton';
 import IndividualDog from './IndividualDog';
 
 import { Redirect } from 'react-router-dom';
@@ -11,7 +10,7 @@ class UpdateDog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.currentProfile.dogID,
+            id: props.currentProfile._id,
             name: props.currentProfile.name,
             breed: props.currentProfile.breed,
             address: props.currentProfile.address,
@@ -47,7 +46,7 @@ class UpdateDog extends React.Component {
             method: 'PUT',
             headers: myHeaders,
             body: JSON.stringify({
-                "id": this.state.dogID,
+                "id": this.state.id,
                 "name": this.state.name,
                 "breed": this.state.breed,
                 "address": this.state.address,
@@ -58,7 +57,7 @@ class UpdateDog extends React.Component {
             redirect: 'follow'
         };
 
-        fetch(`/dog/update/${this.props.dogID}`, requestOptions)
+        fetch(`/dog/update/${this.state.id}`, requestOptions)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
@@ -126,8 +125,7 @@ class UpdateDog extends React.Component {
                 <Button onClick={this.handleUpdateDog}
                     color="primary" variant="outlined"
                     size="small">
-                    Submit</Button>
-                <HomeButton />
+                    Submit Changed Details</Button>
             </>
         )
     }

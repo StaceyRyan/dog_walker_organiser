@@ -26,6 +26,7 @@ function App() {
   }, [])
 
   const checkLoginStatus = () => {
+  
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
