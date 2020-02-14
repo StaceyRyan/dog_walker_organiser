@@ -64,6 +64,7 @@ class UpdateDog extends React.Component {
         return (
             <>
                 <h3>Update {this.name} </h3>
+
                 {this.state.goToDogButtons && <Redirect to="/ownerDogButtons" />}
                 <div className={"form-group"}>
                     <TextField
@@ -124,6 +125,7 @@ class UpdateDog extends React.Component {
                     color="primary" variant="outlined"
                     size="small">
                     Submit Changed Details</Button>
+
             </>
         )
     }

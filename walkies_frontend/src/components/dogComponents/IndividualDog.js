@@ -13,10 +13,12 @@ class IndividualDog extends React.Component {
         this.state = {
             showDog: null,
             goToAvatarUploader: false,
-            loadUpdateDog: false
+            loadUpdateDog: false,
+            returnToDogList: false
         };
         this.handleUploadButton = this.handleUploadButton.bind(this);
         this.handleLoadUpdate = this.handleLoadUpdate.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
@@ -63,6 +65,22 @@ class IndividualDog extends React.Component {
         })
     }
 
+    handleDelete = async () => {
+        console.log('Delete button activated');
+        const requestOptions = {
+            method: 'DELETE',
+            redirect: 'follow',
+          };
+          
+          fetch(`/dog/delete/${this.state.showDog._id}`, requestOptions)
+            .then(response => response.json())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+            this.setState({
+                returnToDogList: true
+            })
+    }
+
     render() {
         return (
             <>
@@ -84,6 +102,13 @@ class IndividualDog extends React.Component {
                 <br />
                 <Logout />
                 <OwnerHomeButton />
+
+                <br />
+                {this.state.returnToDogList && <Redirect to="/allDogs" />}
+                <Button onClick={this.handleDelete}
+                        color="secondary" size="small">
+                    Delete
+                </Button>
                 
             </>
         )
