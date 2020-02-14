@@ -8,7 +8,7 @@ When we initially workshopped the idea of an "uber for dogs", we only really pla
 
 ## Table of Contents
 
-1. What does the app do now and what will it do?
+[1. What does the app do now and what will it do?](#what-does-the-app-do-now-and-what-will-it-do?)
 2. The technical stuff - what is this app?
 3. Setup.
 
@@ -40,5 +40,6 @@ When we initially workshopped the idea of an "uber for dogs", we only really pla
 
 # 3. Setup
 
-- To explore functionality the simple way, run the app from Heroku [https://slrdogs.herokuapp.com/]
+- To view a demo of the app, visit Heroku [https://slrdogs.herokuapp.com/]
 - Alternatively, you may download the files from this github. In the root folder, create a .env file in the backend directory.  Assign a PORT number to avoid clashes when you run the front and back end dev servers. Include a SECRET variable.
+- Note that there is no seed data provided.
