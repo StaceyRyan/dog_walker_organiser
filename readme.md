@@ -8,9 +8,9 @@ When we initially workshopped the idea of an "uber for dogs", we only really pla
 
 ## Table of Contents
 
-[1. What does the app do now and what will it do?](#what-does-the-app-do-now-and-what-will-it-do?)
-2. The technical stuff - what is this app?
-3. Setup.
+[1. What does the app do now and what will it do?](#-1.-what-does-the-app-do-now-and-what-will-it-do?)
+[2. The technical stuff](#-2.-the-technical-stuff)
+[3. Setup](#3.-setup)
 
 # 1. What does the app do now and what will it do?
 
