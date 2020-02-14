@@ -24,6 +24,7 @@ When we initially workshopped the idea of an "uber for dogs", we only really pla
 *In the near future*:
 - dog parents will be able to book their dogs into the available walks.
 - dog parents will be able to upload a photo of their dog to assist with identification.
+- dog walkers will be able to plot an efficient route for pick-ups and drop-offs.
 - when a dog walker selects the start/finish time for a walk, it will calculate the cost of the walk and display it on the page.
 - dog walkers will be able to generate an invoice
 - dog parents will be able to pay for their walk
