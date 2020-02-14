@@ -8,27 +8,27 @@ import Button from '@material-ui/core/Button';
 import { id } from 'date-fns/locale';
 
 class UpdateDog extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            id: '',
-            name: '',
-            breed: '',
-            address: '',
-            health_issues: '',
-            notes: '',
-            avatar: '',
+            id: props.currentProfile.id,
+            name: props.currentProfile.name,
+            breed: props.currentProfile.breed,
+            address: props.currentProfile.address,
+            health_issues: props.currentProfile.health_issues,
+            notes: props.currentProfile.notes,
+            avatar: props.currentProfile.avatar,
         }
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleUpdateDog = this.handleUpdateDog.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
+        // this.componentDidMount = this.componentDidMount.bind(this);
     }
 
-    componentDidMount() {
-        return(
-            <IndividualDog />
-        )  
-    }
+    // componentDidMount() {
+    //     return(
+    //         <IndividualDog />
+    //     )  
+    // }
 
     handleKeyStrike(event) {
         const keystrike = event.target.name;
@@ -47,7 +47,7 @@ class UpdateDog extends React.Component {
             method: 'PUT',
             headers: myHeaders,
             body: JSON.stringify({
-                "id": this.state._id,
+                "id": this.state.dogID,
                 "name": this.state.name,
                 "breed": this.state.breed,
                 "address": this.state.address,
@@ -58,7 +58,7 @@ class UpdateDog extends React.Component {
             redirect: 'follow'
         };
 
-        fetch(`/dog/update/${this.state._id}`, requestOptions)
+        fetch(`/dog/update/${this.state.dogID}`, requestOptions)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
