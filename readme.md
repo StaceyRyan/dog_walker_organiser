@@ -18,11 +18,12 @@ When we initially workshopped the idea of an "uber for dogs", we only really pla
 # 2. What does the app do now and what will it do?
 
 At this point, users can:
-*Italic*
+*
 - create an account;
 - nominate whether they are a dog parent or a dog walker;
 - dog parents can create new dog profiles, edit the profiles and delete them;
 - dog walkers can add new walks with start/finish times and and view existing walks.
+*
 
 In the near future:
 - dog parents will be able to book their dogs into the available walks.
