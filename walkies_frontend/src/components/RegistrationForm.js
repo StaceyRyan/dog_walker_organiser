@@ -26,6 +26,7 @@ class RegistrationForm extends React.Component {
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
         this.handlePasswordStrength = this.handlePasswordStrength.bind(this);
         this.handleRoleSelectorButtons = this.handleRoleSelectorButtons.bind(this);
+        this.handleHomeButton = this.handleHomeButton.bind(this);
     }
 
     handleKeyStrike(event) {
