@@ -109,11 +109,11 @@ class WaggyTail extends React.Component {
                             color="primary" variant="outlined"
                             style={{ fontSize: '8px' }} size="small">
                             Pause</Button>
-                    <Button className="btn gsap-btn"
+                    {/* <Button className="btn gsap-btn"
                             onClick={() => this.dogTween.reverse()}
                             color="primary" variant="outlined"
                             style={{ fontSize: '8px' }} size="small">
-                            Reverse</Button>
+                            Reverse</Button> */}
                     <Button className="btn gsap-btn"
                             onClick={() => this.dogTween.restart()}
                             color="primary" variant="outlined"
