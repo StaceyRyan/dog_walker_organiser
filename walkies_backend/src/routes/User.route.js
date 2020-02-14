@@ -13,8 +13,8 @@ UserRouter.post('/newHuman', async (req, res) => {
         res.status(400).send({ message: 'User already exists' });
     }
     else {
-        const { username, password, preferred_name, email, phone_number } = req.body;
-        const user = await UserModel.create({ username, password, preferred_name, email, phone_number });
+        const { username, password, preferred_name, userRole, email, phone_number } = req.body;
+        const user = await UserModel.create({ username, password, preferred_name, userRole, email, phone_number });
         if (user)
             //convention says put a message with json
             //.json is used at the App level so can use .send here. If no .json at the App level (server.js), use .json here

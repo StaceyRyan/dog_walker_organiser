@@ -1,6 +1,9 @@
 import React from 'react';
 import WalkStartTimeSetter from './WalkStartTimeSetter';
-import WalkEndTimeSetter from './WalkEndTimeSetter'
+import WalkEndTimeSetter from './WalkEndTimeSetter';
+import WalkerHomeButton from './WalkerHomeButton';
+import Logout from '../LogoutButton';
+
 
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -131,6 +134,8 @@ class DogWalkerAppointmentCreator extends React.Component {
                     color="primary" variant="outlined"
                     size="small">
                     Submit</Button>
+
+                <WalkerHomeButton />
 
             </>
         )

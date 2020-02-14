@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPasswordStrength from 'react-password-strength';
-import HomeButton from './HomeButton';
+import { Redirect } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -112,6 +112,12 @@ class RegistrationForm extends React.Component {
             userRole: userType
         });
     };
+
+    handleHomeButton() {
+        this.setState({
+            goHome: true
+        })
+    }
   
     render() {
         return (
@@ -175,12 +181,12 @@ class RegistrationForm extends React.Component {
                 <div>
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
                         <Button 
-                            variant={this.state.userRole === "parent" ? "contained" : "text"}
-                            onClick={() => this.handleRoleSelectorButtons("parent")}>
+                            variant={this.state.userRole === "Owner" ? "contained" : "text"}
+                            onClick={() => this.handleRoleSelectorButtons("Owner")}>
                                 Dog Parent</Button>
                         <Button 
-                            variant={this.state.userRole === "walker" ? "contained" : "text"}
-                            onClick={() => this.handleRoleSelectorButtons("walker")}>
+                            variant={this.state.userRole === "Walker" ? "contained" : "text"}
+                            onClick={() => this.handleRoleSelectorButtons("Walker")}>
                                 Dog Walker</Button>
                     </ButtonGroup>
                 </div>
@@ -192,7 +198,11 @@ class RegistrationForm extends React.Component {
                     size="small">
                     Submit</Button>
 
-                <HomeButton />
+                {this.state.goHome && <Redirect to="/" />}
+                <Button onClick={this.handleHomeButton}
+                        color="primary" variant="outlined" 
+                        size="small">
+                        Home</Button>
             </>
         )
     }

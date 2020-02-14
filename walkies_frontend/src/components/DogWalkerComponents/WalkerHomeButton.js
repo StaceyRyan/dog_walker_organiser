@@ -1,8 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Logout from '../LogoutButton';
 
-class HomeButton extends React.Component {
+
+class WalkerHomeButton extends React.Component {
 
     constructor() {
         super();
@@ -14,9 +16,6 @@ class HomeButton extends React.Component {
     }
 
     handleHomeButton(){
-        // if(
-            //Todo change between home button that goes to "/" and button that goes to "/dogButtons"
-        // )
         this.setState({
             goHome: true
         })
@@ -25,15 +24,16 @@ class HomeButton extends React.Component {
     render() {
         return (
             <>
-                {this.state.goHome && <Redirect to="/ownerDogButtons" />}
+                {this.state.goHome && <Redirect to="/walkerDashboard" />}
                 <Button onClick={this.handleHomeButton}
                     color="primary" variant="outlined"
                     size="small">
                     Home</Button>
+                <Logout />
             </>
         )
     }
 
 }
 
-export default HomeButton;
+export default WalkerHomeButton;

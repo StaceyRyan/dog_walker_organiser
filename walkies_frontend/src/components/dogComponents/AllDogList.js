@@ -1,6 +1,6 @@
 import React from 'react';
 import Logout from '../LogoutButton';
-import HomeButton from '../HomeButton';
+import OwnerHomeButton from '../ownerComponents/OwnerHomeButton';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -62,7 +62,7 @@ class AllDogList extends React.Component {
                 <List>
                     {allDogList}
                 </List>
-                <HomeButton />
+                <OwnerHomeButton />
                 <Logout />
         </>
         )

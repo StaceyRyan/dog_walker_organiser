@@ -1,6 +1,6 @@
 import React from 'react';
 import Logout from '../LogoutButton';
-import HomeButton from '../HomeButton';
+import OwnerHomeButton from '../ownerComponents/OwnerHomeButton';
 import UpdateDog from './UpdateDog';
 
 import Button from '@material-ui/core/Button';
@@ -85,7 +85,7 @@ class IndividualDog extends React.Component {
                         Update Dog Profile</Button>
                 <br />
                 <Logout />
-                <HomeButton />
+                <OwnerHomeButton />
                 
             </>
         )

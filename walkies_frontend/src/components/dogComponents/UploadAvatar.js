@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeButton from '../HomeButton';
+import OwnerHomeButton from '../ownerComponents/OwnerHomeButton';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -65,7 +65,7 @@ class UploadAvatar extends React.Component {
                         onClick={this.handleUploadButton} >
                         Submit </Button>
 
-            <HomeButton />
+            <OwnerHomeButton />
             </>
         )
     }

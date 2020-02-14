@@ -1,8 +1,10 @@
 import React from 'react';
 import Logout from '../LogoutButton';
 // import HomeButton from '../HomeButton';
-import Button from '@material-ui/core/Button';
+
 import { Redirect } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+
 
 class OwnerDogButtons extends React.Component {
 
@@ -22,6 +24,7 @@ class OwnerDogButtons extends React.Component {
     render() {
         return (
             <>
+        <p>Welcome {}</p>
                 {this.state.allDogs && <Redirect to="/allDogs" />}
                 <Button onClick={this.handleShowAllDogsButton}
                         color="primary" variant="outlined" size="small">

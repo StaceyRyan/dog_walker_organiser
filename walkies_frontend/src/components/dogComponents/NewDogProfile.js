@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeButton from '../HomeButton';
+import OwnerHomeButton from '../ownerComponents/OwnerHomeButton';
 
 import { Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
@@ -142,7 +142,7 @@ class NewDogProfile extends React.Component {
                         color="primary" variant="outlined"
                         size="small">
                     Submit</Button>
-                <HomeButton />
+                <OwnerHomeButton />
             </>
         )
     }
