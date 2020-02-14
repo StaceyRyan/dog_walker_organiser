@@ -5,7 +5,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import OwnerDogButtons from './components/dogComponents/OwnerDogButtons';
+import OwnerDogButtons from './components/ownerComponents/OwnerDogButtons';
 import IndividualDog from './components/dogComponents/IndividualDog';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
@@ -15,6 +15,7 @@ import AllDogList from './components/dogComponents/AllDogList';
 import DogWalkerAppointmentCreator from './components/DogWalkerComponents/DogWalkerAppointmentCreator';
 import Walker from './components/Walker';
 import UploadAvatar from './components/dogComponents/UploadAvatar';
+import DogWalkerDashboard from './components/DogWalkerComponents/DogWalkerDashboard';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
       <Route exact path="/walkerButtons" component={Walker} />
       <Route exact path="/newWalk" component={DogWalkerAppointmentCreator} />
       <Route exact path="/updateDog" component={UpdateDog} />
+      <Route exact path="/walkerDashboard" component={DogWalkerDashboard} />
     </>
     )
   }

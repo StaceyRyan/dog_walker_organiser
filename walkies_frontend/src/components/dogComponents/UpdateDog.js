@@ -11,6 +11,7 @@ class UpdateDog extends React.Component {
     constructor() {
         super();
         this.state = {
+            id: '',
             name: '',
             breed: '',
             address: '',
@@ -41,18 +42,24 @@ class UpdateDog extends React.Component {
         console.log('handle update dog button')
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-
-        const raw = new JSON.stringify({});
         
         const requestOptions = {
             method: 'PUT',
             headers: myHeaders,
-            body: raw,
+            body: JSON.stringify({
+                "id": this.state._id,
+                "name": this.state.name,
+                "breed": this.state.breed,
+                "address": this.state.address,
+                "health_issues": this.state.health_issues,
+                "notes": this.state.notes,
+                "avatar": this.state.avatar
+            }),
             redirect: 'follow'
         };
 
-        fetch(`/dog/update/${id}`, requestOptions)
-            .then(response => response.JSON())
+        fetch(`/dog/update/${this.state._id}`, requestOptions)
+            .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }

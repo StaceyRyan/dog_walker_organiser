@@ -5,13 +5,6 @@ import HomeButton from './HomeButton';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-// const legitUser = {
-//     isAuthenticated: false,
-//     authenticate(user) {
-//         this.isAuthenticated = true
-//         setTimeout(user, 100)
-//     },
-// }
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +15,6 @@ class LoginForm extends React.Component {
             submitDisabled: true,
             goToDogButtons: false,
             goHome: false,
-            // redirectToReferrer: false
         };
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleSubmitButton = this.handleSubmitButton.bind(this);
