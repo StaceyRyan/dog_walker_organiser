@@ -17,17 +17,11 @@ class UpdateDog extends React.Component {
             health_issues: props.currentProfile.health_issues,
             notes: props.currentProfile.notes,
             avatar: props.currentProfile.avatar,
+            goBackToDog: false
         }
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
         this.handleUpdateDog = this.handleUpdateDog.bind(this);
-        // this.componentDidMount = this.componentDidMount.bind(this);
     }
-
-    // componentDidMount() {
-    //     return(
-    //         <IndividualDog />
-    //     )  
-    // }
 
     handleKeyStrike(event) {
         const keystrike = event.target.name;
@@ -61,6 +55,9 @@ class UpdateDog extends React.Component {
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
+        this.setState({
+            goBackToDog: true
+        })
     }
 
     render() {
@@ -122,6 +119,7 @@ class UpdateDog extends React.Component {
                         className={"form-control"}
                         onChange={this.handleKeyStrike} />
                 </div>
+                {this.state.goBackToDog && <Redirect to='/allDogs' /> }
                 <Button onClick={this.handleUpdateDog}
                     color="primary" variant="outlined"
                     size="small">

@@ -34,8 +34,7 @@ class AllDogList extends React.Component {
         })
     }
 
-    render() 
-    {
+    render() {
         
         const allDogList = this.state.showDogList.map(doggo => {
             return (

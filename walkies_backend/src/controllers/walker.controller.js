@@ -22,6 +22,10 @@ class WalkControl {
         return { status: status, msg: msg };
     }
 
+    async findAll() {
+        return WalkiesModel.find({})
+    }
+
     async deleteById(walkId) {
         const deleteWalk = await WalkiesModel.deleteOne({ _id: walkId });
         if (deleteWalk.deletedCount > 0) {

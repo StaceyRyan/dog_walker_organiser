@@ -18,7 +18,9 @@ class OwnerDogButtons extends React.Component {
     }
 
     handleShowAllDogsButton() {
-        this.setState({allDogs: true})
+        this.setState({
+            allDogs: true
+        })
     }
         
     render() {
@@ -30,6 +32,7 @@ class OwnerDogButtons extends React.Component {
                         color="primary" variant="outlined" size="small">
                     Go To Your Dogs
                 </Button>
+                <br />
 
                 <Button onClick={() => this.props.history.push('/newDog')}
                         color="primary" variant="outlined" size="small">

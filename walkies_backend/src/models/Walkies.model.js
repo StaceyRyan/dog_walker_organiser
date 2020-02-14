@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const walkiesSchema = new Schema ({
-    walkerName: String,
+    walkName: String,
+    walker: String,
     startDateTime: Date,
     endDateTime: Date,
     numberOfDogs: Number,

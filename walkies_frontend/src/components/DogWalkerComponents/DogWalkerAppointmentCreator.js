@@ -15,7 +15,8 @@ class DogWalkerAppointmentCreator extends React.Component {
         super();
         this.state = {
             newAppointment: [],
-            walkerName: '',
+            walkName: '',
+            walker: '',
             startDateTime: '',
             endDateTime: '',
             status: '',
@@ -28,6 +29,7 @@ class DogWalkerAppointmentCreator extends React.Component {
                 pickUp: '',
                 notes: ''
             },
+            goToDashboard: false,
             submitDisabled: false
         }
         this.handleKeyStrike = this.handleKeyStrike.bind(this);
@@ -64,7 +66,8 @@ class DogWalkerAppointmentCreator extends React.Component {
         myHeaders.append("Content-Type", "application/json");
 
         const raw = JSON.stringify({ 
-            "walkerName": this.state.walkerName, 
+            "walkName": this.state.walkName, 
+            "walker": this.state.walker,
             "startDateTime": this.state.startDateTime, 
             "endDateTime": this.state.endDateTime, 
             "status": this.state.status,
@@ -82,7 +85,9 @@ class DogWalkerAppointmentCreator extends React.Component {
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
-
+        this.setState({
+                goToDashboard: true
+            })
             console.log('new walk created ' + JSON.stringify(newWalk));
     }
 
@@ -93,10 +98,10 @@ class DogWalkerAppointmentCreator extends React.Component {
                 <h3>Create a New Walk</h3>
                 <div className={"form-group"}>
                     <TextField
-                        label="Walker Name"
-                        type="text" name="walkerName"
+                        label="Walk Name"
+                        type="text" name="walkName"
                         variant="outlined" size="small"
-                        value={this.state.walkerName}
+                        value={this.state.walkName}
                         className={"form-control"}
                         onChange={this.handleKeyStrike} />
                 </div>
@@ -129,11 +134,13 @@ class DogWalkerAppointmentCreator extends React.Component {
                         onChange={this.handleKeyStrike} />
                 </div>
 
+                {this.state.goToDashboard && <Redirect to="walkerDashboard" />}
                 <Button onClick={this.handleCreateNewWalk}
                     disabled={this.state.submitDisabled}
                     color="primary" variant="outlined"
                     size="small">
                     Submit</Button>
+                <br />
 
                 <WalkerHomeButton />
 

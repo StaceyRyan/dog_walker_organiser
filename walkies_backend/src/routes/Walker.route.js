@@ -17,6 +17,10 @@ WalkerRouter.post('/newWalk', async (req, res) => {
     res.status(newWalk.status).send(newWalk.msg);
 })
 
+WalkerRouter.get('/showAllWalks', async (req, res) => {
+    res.json(await Walk.findAll());
+})
+
 WalkerRouter.delete('/delete/:_id', async (req, res) => {
     console.log(`req.params._id: ${req.params._id}`);
     const deleteWalk = await Walk.deleteById(req.params._id);

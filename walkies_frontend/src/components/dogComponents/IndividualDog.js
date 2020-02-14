@@ -40,13 +40,11 @@ class IndividualDog extends React.Component {
         return (
             <>
                 <h3>{this.state.showDog.name}</h3>
-                <p>
-                    {this.state.showDog.breed}
-                    {this.state.address}
-                    {this.state.health_issues}
-                    {this.state.notes}
-                    {this.state.showDog.avatar}
-                </p>
+                <p> {this.state.showDog.breed} </p>
+                <p> {this.state.showDog.address} </p>
+                <p> {this.state.showDog.health_issues} </p>
+                <p>  {this.state.showDog.notes} </p>
+                <p>  {this.state.showDog.avatar} </p>
             </>
         )
     }
