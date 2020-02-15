@@ -41,8 +41,12 @@ if (!fs.existsSync(avatarFolder)){
     fs.mkdirSync(avatarFolder);
 }
 
-app.use(express.static('./walkies_backend/frontend'));
-app.use(express.static(avatarFolder));
+//
+if(process.env.PROD && process.env.PROD === 'TRUE')
+{
+    app.use(express.static('./walkies_backend/frontend'));
+}
+    app.use(express.static(avatarFolder));
 
 //routes
 app.use('/user', UserRouter);

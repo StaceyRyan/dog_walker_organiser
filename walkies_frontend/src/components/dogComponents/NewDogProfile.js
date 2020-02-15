@@ -66,7 +66,7 @@ class NewDogProfile extends React.Component {
         const createNewDog = await fetch("/dog/new", newDogOptions)
             .then(response => {
                 if (+response.status === 200){
-                    this.props.history.push("/ownderDogButtons")
+                    this.props.history.push("/ownerDogButtons")
                     return response;
                 }
             })
